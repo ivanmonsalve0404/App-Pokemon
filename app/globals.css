@@ -1,0 +1,526 @@
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--foreground);
+  background: radial-gradient(#e0eafc, #cfdef3, #f2f2f2);
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+/* PokemonGrid.tsx */
+.pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+.pokemon-card {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.pokemon-card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.pokemon-card img {
+  height: 100px;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+}
+
+.pokemon-card-content {
+  text-align: center;
+  padding: 8px;
+}
+
+.pokemon-card-content .id {
+  color: #888;
+  font-size: 12px;
+}
+
+.pokemon-card-content .name {
+  font-size: 14px;
+  text-transform: capitalize;
+  margin-top: 4px;
+}
+
+/* PokemonModal.tsx */
+
+
+.modal-title {
+  text-align: center;
+  font-size: 24px;
+  text-transform: capitalize;
+  margin-bottom: 16px;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-body img {
+  width: 100px;
+  animation: bounceIn 0.5s ease;
+}
+
+.modal-stats {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.modal-stats .stat {
+  margin-bottom: 8px;
+}
+
+.modal-stats .stat-name {
+  text-transform: capitalize;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+/* Home.tsx */
+.search-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.search-input {
+  min-width: 250px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.type-filter {
+  min-width: 300px;
+}
+
+.view-toggle-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-toggle-button:hover {
+  background-color: #0056b3;
+}
+
+.pokemon-list {
+  animation: fadeIn 0.5s ease;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Mejoras generales */
+.button-icon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* PokemonModal.tsx */
+
+
+.modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  filter: blur(5px);
+  z-index: -1;
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: #f44336;
+}
+
+.modal-close:focus {
+  outline: none;
+}
+
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-body img {
+  width: 100px;
+  animation: bounceIn 0.5s ease;
+}
+
+.modal-stats {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.modal-stats .stat {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-stats .stat-name {
+  text-transform: capitalize;
+  font-size: 14px;
+  width: 100px;
+}
+
+.modal-stats .stat-bar {
+  flex: 1;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #e0e0e0;
+  overflow: hidden;
+}
+
+.modal-stats .stat-bar-fill {
+  height: 100%;
+  transition: width 0.5s ease;
+}
+
+.modal-stats .stat-value {
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+/* Colores por tipo de Pokémon */
+.type-normal {
+  background: linear-gradient(to bottom, #a8a878, #8a8a59);
+}
+
+.type-fire {
+  background: linear-gradient(to bottom, #f08030, #c03028);
+}
+
+.type-water {
+  background: linear-gradient(to bottom, #6890f0, #386ceb);
+}
+
+.type-electric {
+  background: linear-gradient(to bottom, #f8d030, #f0c108);
+}
+
+.type-grass {
+  background: linear-gradient(to bottom, #78c850, #588a30);
+}
+
+.type-ice {
+  background: linear-gradient(to bottom, #98d8d8, #78c8c8);
+}
+
+.type-fighting {
+  background: linear-gradient(to bottom, #c03028, #903028);
+}
+
+.type-poison {
+  background: linear-gradient(to bottom, #a040a0, #803080);
+}
+
+.type-ground {
+  background: linear-gradient(to bottom, #e0c068, #c09050);
+}
+
+.type-flying {
+  background: linear-gradient(to bottom, #a890f0, #8870d0);
+}
+
+.type-psychic {
+  background: linear-gradient(to bottom, #f85888, #d03868);
+}
+
+.type-bug {
+  background: linear-gradient(to bottom, #a8b820, #889020);
+}
+
+.type-rock {
+  background: linear-gradient(to bottom, #b8a038, #988038);
+}
+
+.type-ghost {
+  background: linear-gradient(to bottom, #705898, #504878);
+}
+
+.type-dragon {
+  background: linear-gradient(to bottom, #7038f8, #5018d8);
+}
+
+.type-dark {
+  background: linear-gradient(to bottom, #705848, #504038);
+}
+
+.type-steel {
+  background: linear-gradient(to bottom, #b8b8d0, #9898b0);
+}
+
+.type-fairy {
+  background: linear-gradient(to bottom, #ee99ac, #cc798c);
+}
+
+/* Animaciones */
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ---------- MODAL VISUAL STYLING ---------- */
+
+.modal-content {
+  background: radial-gradient(circle, #fdfdfd, #e0e0e0);
+  border-radius: 16px;
+  padding: 24px;
+  animation: slideIn 0.4s ease;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.modal-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+  animation: fadeIn 0.6s ease;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.modal-body img {
+  width: 120px;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.4));
+  animation: float 2s ease-in-out infinite;
+}
+
+/* ---------- TYPE BADGES ---------- */
+.modal-body .type-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0 5px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.modal-body .type-badge:hover {
+  transform: scale(1.1);
+}
+
+/* ---------- STATS VISUAL ENHANCEMENT ---------- */
+.modal-stats {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px 0;
+}
+
+.modal-stats .stat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.stat-name {
+  text-transform: capitalize;
+  font-size: 14px;
+  width: 120px;
+  color: #444;
+}
+
+.stat-bar {
+  flex: 1;
+  height: 12px;
+  border-radius: 6px;
+  background-color: #eee;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  animation: growBar 1s ease forwards;
+}
+
+.stat-value {
+  font-size: 12px;
+  width: 32px;
+  text-align: right;
+  color: #555;
+}
+
+/* ---------- ANIMACIONES ---------- */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes growBar {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: var(--bar-width);
+  }
+}
