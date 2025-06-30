@@ -24,7 +24,7 @@ const usePokemon = () => {
 
                 setPokemonList(detailedPokemon);
                 setLoading(false);
-            } catch (err) {
+            } catch {
                 setError('Failed to fetch Pokémon data');
                 setLoading(false);
             }

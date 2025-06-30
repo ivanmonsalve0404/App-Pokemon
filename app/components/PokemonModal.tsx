@@ -1,6 +1,7 @@
 import { Dialog, DialogTitle, DialogContent, Box, Typography } from '@mui/material';
 import { Pokemon } from '../types/pokemon';
 import '../globals.css';
+import Image from 'next/image';
 
 interface PokemonModalProps {
     open: boolean;
@@ -33,7 +34,12 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ open, onClose, pokemon }) =
             </DialogTitle>
             <DialogContent className={`modal-content type-${primaryType}`}>
                 <Box className="modal-body">
-                    <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+                    <Image
+                        src={pokemon.sprites.front_default}
+                        alt={pokemon.name}
+                        width={96}
+                        height={96}
+                    />
                     <Typography>
                         Type:{" "}
                         {pokemon.types.map(t => (
@@ -54,7 +60,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ open, onClose, pokemon }) =
                                         style={{
                                             width: `${(stat.base_stat / 255) * 100}%`,
                                             backgroundColor: getStatColor(stat.base_stat),
-                                            ['--bar-width' as any]: `${(stat.base_stat / 255) * 100}%`
+                                            ["--bar-width" as string]: `${(stat.base_stat / 255) * 100}%`
                                         }}
                                     />
                                 </Box>

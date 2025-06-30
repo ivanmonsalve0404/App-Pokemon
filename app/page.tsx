@@ -9,6 +9,7 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import PokemonGrid from '../app/components/PokemonGrid';
 import PokemonModal from './components/PokemonModal';
 import '../app/globals.css'; // Import global styles
+import Image from 'next/image';
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -45,7 +46,12 @@ const Home = () => {
       width: 100,
       sortable: false,
       renderCell: (params) => (
-        <img src={params.value} alt={params.row.name} style={{ width: 50 }} />
+        <Image
+          src={params.value}
+          alt={params.row.name}
+          width={50}
+          height={50}
+        />
       ),
       align: 'center',
     },
